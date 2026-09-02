@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Early Non-Flashing Theme Initialization Script -->
+    <script>
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('ibvap_theme');
+                const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'light');
+                if (initialTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                } else {
+                    document.documentElement.classList.add('light');
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+    
+    <!-- Import map for InsForge SDK -->
+    <script type="importmap">
+    {
+        "imports": {
+            "@insforge/sdk": "https://esm.sh/@insforge/sdk@latest"
+        }
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN with forms & container query plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts: Inter & Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css"/>
+
+    <!-- Exact Stitch Tailwind Theme Tokens -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d6e3ff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#dee9fc",
+                        "outline-variant": "#c5c6cd",
+                        "on-secondary-fixed-variant": "#374767",
+                        "security-green": "#10B981",
+                        "on-secondary-container": "#4e5d7e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-muted": "#F3F4F6",
+                        "on-surface-variant": "#44474d",
+                        "inverse-surface": "#27313f",
+                        "surface-container-low": "#eff4ff",
+                        "surface-variant": "#d9e3f6",
+                        "outline": "#75777e",
+                        "primary": "#000000",
+                        "on-primary-fixed": "#0d1c32",
+                        "on-secondary-fixed": "#091b39",
+                        "tertiary-container": "#002113",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#c7d7fe",
+                        "on-background": "#121c2a",
+                        "surface-dim": "#d0dbed",
+                        "surface-bright": "#f8f9ff",
+                        "secondary": "#4f5e80",
+                        "warning-amber": "#F59E0B",
+                        "surface": "#f8f9ff",
+                        "on-primary-container": "#76849f",
+                        "secondary-fixed-dim": "#b6c6ed",
+                        "primary-container": "#0d1c32",
+                        "critical-red": "#EF4444",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-container": "#009668",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d9e3f6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "tertiary": "#000000",
+                        "inverse-primary": "#b9c7e4",
+                        "background": "#f8f9ff",
+                        "surface-tint": "#515f78",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-container": "#e6eeff",
+                        "on-primary-fixed-variant": "#39475f",
+                        "on-surface": "#121c2a",
+                        "border-standard": "#D1D5DB",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "edge-margin-mobile": "16px",
+                        "density-standard": "16px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "density-high": "8px",
+                        "edge-margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "headline-sm": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "display-kpi": ["Inter", "sans-serif"],
+                        "metadata-mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-muted text-on-surface h-screen flex flex-col overflow-hidden font-sans">
+    <div id="app-shell" class="flex flex-col h-full w-full">
+        <!-- Navbar Mount Container -->
+        <div id="navbar-container"></div>
+
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar Mount Container -->
+            <div id="sidebar-container"></div>
+
+            <!-- Main Dynamic Content Container -->
+            <main id="main-content-area" class="flex-1 overflow-y-auto bg-surface-muted"></main>
+        </div>
+    </div>
+
+    <!-- Application Script Entry Point -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
